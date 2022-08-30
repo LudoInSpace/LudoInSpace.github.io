@@ -10,21 +10,25 @@ redirect_from:
 
 [Version Française](https://ludoinspace.github.io/soutenance)
 
-Date
-----
+Analysis of the side-effects on latency bounds of combinations of
+scheduling, redundancy and synchronization mechanisms in time-sensitive
+networks.
+
+Date and Place
+--------------
 
 September 12th, 2022 at 1:30pm
 
-Location
---------
-
-``Salle des thèses" at [ISAE-SUPAERO](https://goo.gl/maps/E7S9nqRoXpencSFB7)
-
+In the "Salle des thèses" at [ISAE-SUPAERO](https://goo.gl/maps/E7S9nqRoXpencSFB7)
 10 Av.Edouard Belin, 31400 Toulouse, France
+
+If you don't already have access to ISAE-SUPAERO, please fill [this form for the visitor badge](https://forms.gle/M9DjoZmAGXxhghbF7).
 
 Live stream
 -----------
 
-Details will be uploaded soon
+Details will be available soon
+
+
 
 
