@@ -4,7 +4,7 @@ date: 2022-08-31
 permalink: /posts/2022/08/soutenance/
 ---
 
-*Analyse des conséquences sur les bornes de latences des combinaisons de mécanismes d'ordonnancement, de redondance et de synchronisation dans les réseaux temps-réel.*
+***Analyse des conséquences sur les bornes de latences des combinaisons de mécanismes d'ordonnancement, de redondance et de synchronisation dans les réseaux temps-réel.***
 
 Date
 ----
