@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-[Version Française](https://ludoinspace.github.io/soutenance)
+[Version Française](https://ludoinspace.github.io/posts/2022/08/soutenance/)
 
 *Analysis of the side-effects on latency bounds of combinations of scheduling, redundancy and synchronization mechanisms in time-sensitive networks.*
 
