@@ -46,7 +46,7 @@ Examiners:
 Supervisors:
 
 - Mrs. Ahlem MIFDAOUI, Professor at ISAE-SUPAERO, Toulouse
-- Mr. Mr. Jean-Yves LE BOUDEC, Professor at EPFL, Lausanne
+- Mr. Jean-Yves LE BOUDEC, Professor at EPFL, Lausanne
 
 Abstract
 --------
