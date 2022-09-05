@@ -14,7 +14,7 @@ Date
 Diffusion en direct
 -------------------
 
-https://youtu.be/ij6ow5XTr4Q
+[https://youtu.be/ij6ow5XTr4Q]
 
 Lieu
 -----

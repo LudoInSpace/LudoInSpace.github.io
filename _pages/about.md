@@ -20,7 +20,7 @@ September 12th, 2022 at 1:30pm
 Live stream
 -----------
 
-https://youtu.be/ij6ow5XTr4Q
+[https://youtu.be/ij6ow5XTr4Q]
 
 Place
 -----
