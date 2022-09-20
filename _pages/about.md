@@ -12,23 +12,10 @@ redirect_from:
 
 ***Analysis of the side-effects on latency bounds of combinations of scheduling, redundancy and synchronization mechanisms in time-sensitive networks.***
 
-Date
-----
+Date and Place
+--------------
 
-September 12th, 2022 at 1:30pm
-
-Live stream
------------
-
-[https://youtu.be/ij6ow5XTr4Q](https://youtu.be/ij6ow5XTr4Q)
-
-Place
------
-
-In the "Salle des thèses" at [ISAE-SUPAERO](https://goo.gl/maps/E7S9nqRoXpencSFB7)
-10 Av.Edouard Belin, 31400 Toulouse, France
-
-If you don't already have access to ISAE-SUPAERO, please fill [this form for the visitor badge](https://forms.gle/M9DjoZmAGXxhghbF7).
+September 12th, 2022 at 1:30pm at ISAE-SUPAERO, Toulouse, France
 
 Jury
 ----
@@ -47,6 +34,20 @@ Supervisors:
 
 - Mrs. Ahlem MIFDAOUI, Professor at ISAE-SUPAERO, Toulouse
 - Mr. Jean-Yves LE BOUDEC, Professor at EPFL, Lausanne
+
+Replay
+------
+
+[https://youtu.be/ij6ow5XTr4Q](https://youtu.be/ij6ow5XTr4Q)
+
+Slides
+------
+
+[Animated](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-animated.pdf)
+
+[Handout*](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-handout.pdf)
+
+*Some pages of the handout version might not render correctly.
 
 Abstract
 --------
