@@ -43,9 +43,7 @@ Replay
 Slides
 ------
 
-[Animated](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-animated.pdf)
-
-[Handout*](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-handout.pdf)
+[Animated](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-animated.pdf) [Handout*](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-handout.pdf)
 
 *Some pages of the handout version might not render correctly.
 
