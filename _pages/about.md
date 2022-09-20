@@ -45,7 +45,7 @@ Slides
 
 [Animated](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-animated.pdf) / [Handout*](https://ludoinspace.github.io/files/2022-09-ludovic-thomas-defense-slides-handout.pdf)
 
-*Some pages of the handout version might have an incorrect rendering, please refer to the animated version in cas of a doubt.
+*Some pages of the handout version might have an incorrect rendering, please refer to the animated version in case of a doubt.
 
 Abstract
 --------
