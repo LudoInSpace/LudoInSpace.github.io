@@ -1,0 +1,7 @@
+xtfa.contentionPipelines module
+===============================
+
+.. automodule:: xtfa.contentionPipelines
+   :members:
+   :undoc-members:
+   :show-inheritance:

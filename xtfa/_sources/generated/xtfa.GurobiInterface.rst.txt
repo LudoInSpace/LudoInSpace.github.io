@@ -1,0 +1,29 @@
+xtfa.GurobiInterface
+====================
+
+.. automodule:: xtfa.GurobiInterface
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      GurobiInterface
+   
+   
+
+   
+   
+   
+
+
+

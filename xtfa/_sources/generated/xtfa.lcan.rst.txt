@@ -1,0 +1,31 @@
+xtfa.lcan
+=========
+
+.. automodule:: xtfa.lcan
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      computeBurstDependencyGraph
+      lcan_ir
+      lcan_pfr
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

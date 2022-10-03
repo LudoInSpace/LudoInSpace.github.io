@@ -1,0 +1,29 @@
+﻿baharevMfas
+===========
+
+.. automodule:: baharevMfas
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BaharevMfas
+   
+   
+
+   
+   
+   
+
+
+

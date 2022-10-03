@@ -1,0 +1,7 @@
+xtfa.inputPipelines module
+==========================
+
+.. automodule:: xtfa.inputPipelines
+   :members:
+   :undoc-members:
+   :show-inheritance:

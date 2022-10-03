@@ -1,0 +1,561 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="xtfa.fasUtility module" href="xtfa.fasUtility.html" /><link rel="prev" title="xtfa.clocks module" href="xtfa.clocks.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>xtfa.contentionPipelines module - xTFA 2022-07 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">xTFA 2022-07 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">xTFA 2022-07 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relationmanuscript.html">Relations Between the Notions of the Manuscript and their Implementation in the Tool</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">xtfa</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="xtfa.html">xtfa package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtfa.GurobiInterface.html">xtfa.GurobiInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.MilpInterface.html">xtfa.MilpInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.baharevMfas.html">xtfa.baharevMfas module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.clocks.html">xtfa.clocks module</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">xtfa.contentionPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.fasUtility.html">xtfa.fasUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.flows.html">xtfa.flows module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.graphUtility.html">xtfa.graphUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.inputPipelines.html">xtfa.inputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.lcan.html">xtfa.lcan module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.minPlusToolbox.html">xtfa.minPlusToolbox module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.networks.html">xtfa.networks module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.nodes.html">xtfa.nodes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.outputPipelines.html">xtfa.outputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.plotUtility.html">xtfa.plotUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.unitUtility.html">xtfa.unitUtility module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-xtfa.contentionPipelines">
+<span id="xtfa-contentionpipelines-module"></span><h1>xtfa.contentionPipelines module<a class="headerlink" href="#module-xtfa.contentionPipelines" title="Permalink to this headline">#</a></h1>
+<p>This module contains the definition of the delay-bound computation computation pipeline
+In the software, the delay-bound computation pipeline is called the “contention pipeline” (legacy name)
+The role of this pipeline is to compute the worst-case delay of the aggregate in this node.</p>
+<p>The file is split in two parts:
+-First all the possible computational blocks inside the pipeline are defined
+-Then the low-state computation pipeline itself is defined.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.contentionPipelines.</span></span><span class="sig-name descname"><span class="pre">ContentionPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class represents a contention pipeline. A contention pipeline is an ordered list of ContentionPipelineStep instances. Each step is executed one after the other one. Each step computes an additionnal lower and upper bounding value for the delay that the flows suffer in the contention part of the output port (for example constant delay, or jitter in the switch fabric could rather be added to the InputPipeline, though it is not required, it depends on what you want to do). All the lower and upper bounding values from every step are CUMMULATIVE: they are summed to obtain the definitive lower and upper bounding values of the delay that every flow suffers through this output port. Each step makes its decision based on the state of the flows and the aggregate arrival curve AT THE INPUT OF THE CONTENTION PIPELINE (these object are not updated through the contention pipeline AND MUST NOT BE MODIFIED BY ANY of the steps)</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>availableModules: only used at class level. List of available ContentionPipelineStep subclasses. Used for auto install. During auto install, each subclass, IN THE ORDER AT WHICH THEY APPEAR IN THIS LIST, is asked (using a classmethod) if an instance of the subclass should be installed in this contention pipeline, and if so, and instance is created and put in the contention pipeline</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.appendContentionStep">
+<span class="sig-name descname"><span class="pre">appendContentionStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><span class="pre">xtfa.contentionPipelines.ContentionPipelineStep</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.appendContentionStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.appendContentionStep" title="Permalink to this definition">#</a></dt>
+<dd><p>Appends a ContentionPipelineStep to the current ContentionPipeline</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>step (ContentionPipelineStep): the step to add (added at the end of the pipeline)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.autoInstall">
+<span class="sig-name descname"><span class="pre">autoInstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.autoInstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.autoInstall" title="Permalink to this definition">#</a></dt>
+<dd><p>Auto install a contention pipeline. To do so, every sclass in self.availableModules is asked whether an instance of the class should be installed for the contention pipeline of this node, and if so, an instance is added.
+Subclasses are sollicitated in the order of the list self.availableModules, so its order matters.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computational flags
+net (Network): the network
+nodeName (str): the name of the node on which we want to install a pipeline</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.availableModules">
+<span class="sig-name descname"><span class="pre">availableModules</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'xtfa.contentionPipelines.FifoContentionStep'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'xtfa.contentionPipelines.MohammadpourEtAlImprovementStep'&gt;]</span></em><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.availableModules" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.clearPipelineComputations">
+<span class="sig-name descname"><span class="pre">clearPipelineComputations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.clearPipelineComputations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.clearPipelineComputations" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.getContentionDelayBounds">
+<span class="sig-name descname"><span class="pre">getContentionDelayBounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.getContentionDelayBounds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.getContentionDelayBounds" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the lower and upper bounding values for the delays of the flows in the output port represented by the current contention pipeline</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>AssertionError: if processPipeline() has not been called beforehand</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[float,float]: (minDelayBound,maxDelayBound) for this output port</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.isFinished">
+<span class="sig-name descname"><span class="pre">isFinished</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.isFinished"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.isFinished" title="Permalink to this definition">#</a></dt>
+<dd><p>Answers True if the pipeline has been computed, False otherwise</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>bool: True is the pipeline has been processed, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.processPipeline">
+<span class="sig-name descname"><span class="pre">processPipeline</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.processPipeline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.processPipeline" title="Permalink to this definition">#</a></dt>
+<dd><p>Processes the current contention pipeline</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>AssertionError: when the pipeline has already been processed</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.setInputAggregate">
+<span class="sig-name descname"><span class="pre">setInputAggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aggregateAC</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.setInputAggregate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.setInputAggregate" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the aggregate arrival curve that enters the contention pipeline (that enters the output port of the current node)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>aggregateAC (mpt.Curve): the arrival curve of the aggregate</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipeline.setInputFlowStates">
+<span class="sig-name descname"><span class="pre">setInputFlowStates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowStates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.FlowState" title="xtfa.flows.FlowState"><span class="pre">xtfa.flows.FlowState</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipeline.setInputFlowStates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipeline.setInputFlowStates" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets (by copying) the flow states at the input of the contention pipeline</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>flowStates (List[flows.FlowState]): the list of the flow states as they enter the contention pipeline</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipelineStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.contentionPipelines.</span></span><span class="sig-name descname"><span class="pre">ContentionPipelineStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theNodeName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipelineStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This interface represents a step in the contention pipeline (= the pipeline that computes the delay suffered by the flows of this class)</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>_nodeName (str): the name of the node on which the pipeline step is installed</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipelineStep.checkInstall">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">checkInstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipelineStep.checkInstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipelineStep.checkInstall" title="Permalink to this definition">#</a></dt>
+<dd><p>Checks if an instance of the contention step should be installed at this node. The subclass MUST OVERRIDE this method.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if an instance of the current class must be installed on the contention pipeline of the node ‘nodeName’, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipelineStep.executeStep">
+<span class="sig-name descname"><span class="pre">executeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowStates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.FlowState" title="xtfa.flows.FlowState"><span class="pre">xtfa.flows.FlowState</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregatedArrivalCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMinDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMaxDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipelineStep.executeStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipelineStep.executeStep" title="Permalink to this definition">#</a></dt>
+<dd><p>Executes the step of the contention pipeline. Returns the lower- and upper-bounds for the delay that the flows suffer at this step. The subclass must override this method.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>flowStates (List[flows.FlowState]): the list of all the flow states at the input of the contention pipeline (not at at the input of this specific pipeline step). The subclass MAY NOT modify the list or its content.
+aggregatedArrivalCurve (mpt.Curve): the aggregated arrival curve at the input of the contention pipeline (not at at the input of this specific pipeline step). The subclass MAY NOT modify this curbe.
+previousMinDelay (float): the previously accumulated minimum delay in all the previous steps in the contention pipeline
+previousMaxDelay (float): the previously accumulated maximum delay in all the previous steps in the contention pipeline
+flags (Mapping): a dictionnary of flags that can be read to receive informations from previous pipeline steps and that CAN BE MODIFIED to send informations to future pipeline steps</p>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[float,float]: (minDelay,maxDelay) where minDelay is the minimum delay suffered at this step, maximumDelay is the maximum delay suffered at this step. Both delay MAY BE NEGATIVE if the current step represents some sort of delay improvement due to NC’s results.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.ContentionPipelineStep.getConfiguredInstanceForNode">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getConfiguredInstanceForNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><span class="pre">ContentionPipelineStep</span></a></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#ContentionPipelineStep.getConfiguredInstanceForNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.ContentionPipelineStep.getConfiguredInstanceForNode" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieves a configured instance of the current class for the node nodeName</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>ContentionPipelineStep : a configured instance of the subclass, configured for the node ‘nodeName’</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.contentionPipelines.</span></span><span class="sig-name descname"><span class="pre">FifoContentionStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.contentionPipelines.ContentionPipelineStep</span></code></a></p>
+<p>This implementation of ContentionPipelineStep represents the classic FIFO service provided to the aggregate of flows, served by a service curve</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep.checkInstall">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">checkInstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep.checkInstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep.checkInstall" title="Permalink to this definition">#</a></dt>
+<dd><p>In this implementation of the checkInstall interface method, we answer yes if the key “service-policy” of compuFlags is set to “FIRST_IN_FIRST_OUT”</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if the key “service-policy” of compuFlags is set to “FIRST_IN_FIRST_OUT”. False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep.executeStep">
+<span class="sig-name descname"><span class="pre">executeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowStates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.FlowState" title="xtfa.flows.FlowState"><span class="pre">xtfa.flows.FlowState</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregatedArrivalCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMinDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMaxDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep.executeStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep.executeStep" title="Permalink to this definition">#</a></dt>
+<dd><p>In this implementation of the interface method, the maximum delay bound is obtained by deconvolution of the aggregate arrival curve with the self._serviceCurve</p>
+<dl>
+<dt>Args:</dt><dd><p>flowStates (List[flows.FlowState]): not used in this subclass
+aggregatedArrivalCurve (mpt.Curve): used to compute the delay bound as being the maximum horizontal distance between aggregatedArrivalCurve and the service curve of self
+previousMinDelay (float): not used in this subclass
+previousMaxDelay (float): not used in this subclass
+flags (dict): this class ADDS the following keys to the FLAGS:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>flags[“service_is_rate_latency”] is set to True if the service of self is Rate-Latency, False otherwise</p></li>
+<li><dl class="simple">
+<dt>if flags[“service_is_rate_latency”] == True:</dt><dd><ul>
+<li><p>flags[“rate_latency_service_rate”] contains the rate of the Rate-Latency service curve of self</p></li>
+<li><p>flags[“rate_latency_service_latency”] contains the latency of the Rate-Latency service curve of self</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[float,float]: (0,maxDelayBound) where maxDelayBound is the maximum horizontal distance between the aggregate arrival curve and the service curve computed using the mpt’s modulo (%) operation. Minimum delay is always assumed to equal zero, use other pipeline steps or other pipelines to set the minimum delay</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep.getConfiguredInstanceForNode">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getConfiguredInstanceForNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><span class="pre">ContentionPipelineStep</span></a></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep.getConfiguredInstanceForNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep.getConfiguredInstanceForNode" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieves a configured instance of the current class for the node ‘nodeName’</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>ContentionPipelineStep : a configured instance of the subclass, configured for the node ‘nodeName’</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep.getServiceCurveCopy">
+<span class="sig-name descname"><span class="pre">getServiceCurveCopy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep.getServiceCurveCopy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep.getServiceCurveCopy" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.FifoContentionStep.setServiceCurve">
+<span class="sig-name descname"><span class="pre">setServiceCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#FifoContentionStep.setServiceCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.FifoContentionStep.setServiceCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the service curve serving the aggregate</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>curve (mpt.Curve): the service curve for this FIFO element</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.contentionPipelines.</span></span><span class="sig-name descname"><span class="pre">MohammadpourEtAlImprovementStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputLinkSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#MohammadpourEtAlImprovementStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.contentionPipelines.ContentionPipelineStep</span></code></a></p>
+<p>This implementation of ContentionPipelineStep represents the improvement proved by Mohammadpour et al when the output rate is known.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><p>abbrvInTechnoThatTriggersInstallation (str): a string that triggers the installation of MohammadpourEtAlImprovementStep instances on every node if present on the technology network-level flag</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.abbrvInTechnoThatTriggersInstallation">
+<span class="sig-name descname"><span class="pre">abbrvInTechnoThatTriggersInstallation</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MOH'</span></em><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.abbrvInTechnoThatTriggersInstallation" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.checkInstall">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">checkInstall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#MohammadpourEtAlImprovementStep.checkInstall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.checkInstall" title="Permalink to this definition">#</a></dt>
+<dd><p>In this implementation of the interface method, we answer True if [the flag ‘technology’ contains ‘MOH’ AND compuFlags contain ‘transmission-capacity’], False otherwize</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if [the flag ‘technology’ contains ‘MOH’ AND compuFlags contain ‘transmission-capacity’], False otherwize</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.executeStep">
+<span class="sig-name descname"><span class="pre">executeStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowStates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.FlowState" title="xtfa.flows.FlowState"><span class="pre">xtfa.flows.FlowState</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregatedArrivalCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMinDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previousMaxDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#MohammadpourEtAlImprovementStep.executeStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.executeStep" title="Permalink to this definition">#</a></dt>
+<dd><p>In this implementation of the interface method, we return a negative maximum delay to represent the improvement proved by Mohammadpour et al.</p>
+<dl>
+<dt>Args:</dt><dd><p>flowStates (List[flows.FlowState]): the list of flow states at the input of the contention pipeline. Used to obtain min packet size
+aggregatedArrivalCurve (mpt.Curve): not used in this subclass
+previousMinDelay (float): not used in this subclass
+previousMaxDelay (float): not used in this subclass
+flags (dict): this step READS the following flags:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>if flags[“service_is_rate_latency”] == False, no improvement is done. Otherwise, it REQUIRES the following flag:</dt><dd><ul>
+<li><p>flags[“rate_latency_service_rate”] is the rate of the rate-latency service rate, required for the computation of the delay bound improvement</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>Tuple[float,float]: (0,improvement) where improvement is a negative value that represents the improvement of the delay thanks to the Mohammadpour et al theorem</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.getConfiguredInstanceForNode">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getConfiguredInstanceForNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">compuFlags</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Mapping</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networks.Network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.contentionPipelines.ContentionPipelineStep" title="xtfa.contentionPipelines.ContentionPipelineStep"><span class="pre">ContentionPipelineStep</span></a></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#MohammadpourEtAlImprovementStep.getConfiguredInstanceForNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.getConfiguredInstanceForNode" title="Permalink to this definition">#</a></dt>
+<dd><p>Retrieves a configured instance of the current class for the node nodeName</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>compuFlags (Mapping): the dictionnary of computationnal flags as extracted for this output port on this physical node of this network.
+net (Network): the reference to the Network object that nodeName belongs to
+nodeName (str): the name of the current node, on which we want to check if we need to install an instance of this pipeline element</p>
+</dd>
+<dt>Returns:</dt><dd><p>ContentionPipelineStep : a configured instance of the subclass, configured for the node nodeName</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.setOutputLinkSpeed">
+<span class="sig-name descname"><span class="pre">setOutputLinkSpeed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linkSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/contentionPipelines.html#MohammadpourEtAlImprovementStep.setOutputLinkSpeed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.contentionPipelines.MohammadpourEtAlImprovementStep.setOutputLinkSpeed" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="xtfa.fasUtility.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">xtfa.fasUtility module</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="xtfa.clocks.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">xtfa.clocks module</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Ludovic Thomas
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

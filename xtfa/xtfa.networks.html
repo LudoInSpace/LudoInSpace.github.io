@@ -1,0 +1,756 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="xtfa.nodes module" href="xtfa.nodes.html" /><link rel="prev" title="xtfa.minPlusToolbox module" href="xtfa.minPlusToolbox.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>xtfa.networks module - xTFA 2022-07 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">xTFA 2022-07 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">xTFA 2022-07 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relationmanuscript.html">Relations Between the Notions of the Manuscript and their Implementation in the Tool</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">xtfa</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="xtfa.html">xtfa package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtfa.GurobiInterface.html">xtfa.GurobiInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.MilpInterface.html">xtfa.MilpInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.baharevMfas.html">xtfa.baharevMfas module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.clocks.html">xtfa.clocks module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.contentionPipelines.html">xtfa.contentionPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.fasUtility.html">xtfa.fasUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.flows.html">xtfa.flows module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.graphUtility.html">xtfa.graphUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.inputPipelines.html">xtfa.inputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.lcan.html">xtfa.lcan module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.minPlusToolbox.html">xtfa.minPlusToolbox module</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">xtfa.networks module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.nodes.html">xtfa.nodes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.outputPipelines.html">xtfa.outputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.plotUtility.html">xtfa.plotUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.unitUtility.html">xtfa.unitUtility module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-xtfa.networks">
+<span id="xtfa-networks-module"></span><h1>xtfa.networks module<a class="headerlink" href="#module-xtfa.networks" title="Permalink to this headline">#</a></h1>
+<p>This module contains all the class useful for defining a network, managing the TFA iteration one node after another etc.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.networks.</span></span><span class="sig-name descname"><span class="pre">CyclicNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fasMethod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.networks.FeedForwardNetwork</span></code></a></p>
+<p>This represents a network with cyclic dependencies, it uses a fix point</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.compute" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.cuts">
+<span class="sig-name descname"><span class="pre">cuts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.cuts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.cyclicComputation">
+<span class="sig-name descname"><span class="pre">cyclicComputation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.cyclicComputation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.cyclicComputation" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.fasMethod">
+<span class="sig-name descname"><span class="pre">fasMethod</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="xtfa.fasUtility.html#xtfa.fasUtility.FeedbackArcSetMethod" title="xtfa.fasUtility.FeedbackArcSetMethod"><span class="pre">xtfa.fasUtility.FeedbackArcSetMethod</span></a></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.fasMethod" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.fixPointFailure">
+<span class="sig-name descname"><span class="pre">fixPointFailure</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.fixPointFailure" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.fixPointLimit">
+<span class="sig-name descname"><span class="pre">fixPointLimit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.fixPointLimit" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.getNodeUsage">
+<span class="sig-name descname"><span class="pre">getNodeUsage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.getNodeUsage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.getNodeUsage" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.getOrderedDelayUpperBoundList">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.getOrderedDelayUpperBoundList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.getOrderedDelayUpperBoundList" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the list of the delay upper bound, ordered in increasing values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[float]: the list of increasing delay upperbounds</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.get_max_load">
+<span class="sig-name descname"><span class="pre">get_max_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.get_max_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.get_max_load" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.logger">
+<span class="sig-name descname"><span class="pre">logger</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">logging.Logger</span></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.logger" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.matchDmax">
+<span class="sig-name descname"><span class="pre">matchDmax</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#xtfa.networks.CyclicNetwork.matchDmax" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.CyclicNetwork.setFasMethod">
+<span class="sig-name descname"><span class="pre">setFasMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aFasMethod</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.fasUtility.html#xtfa.fasUtility.FeedbackArcSetMethod" title="xtfa.fasUtility.FeedbackArcSetMethod"><span class="pre">xtfa.fasUtility.FeedbackArcSetMethod</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#CyclicNetwork.setFasMethod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.CyclicNetwork.setFasMethod" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.networks.</span></span><span class="sig-name descname"><span class="pre">FeedForwardNetwork</span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.networks.NetworkInterface" title="xtfa.networks.NetworkInterface"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.networks.NetworkInterface</span></code></a></p>
+<p>This class represent a feed-forward FIFO network with the TFA method</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.auto_install_pipelines">
+<span class="sig-name descname"><span class="pre">auto_install_pipelines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.auto_install_pipelines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.auto_install_pipelines" title="Permalink to this definition">#</a></dt>
+<dd><p>Automatically install the computational models (ie computational pipelines) based on the computational flags</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.compute" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.countFlowName">
+<span class="sig-name descname"><span class="pre">countFlowName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.countFlowName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.countFlowName" title="Permalink to this definition">#</a></dt>
+<dd><p>Count the number of flows that have the same name - Should never be more than 1</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>flowName (str): the name to look for</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: the number of matching flows (should equal 1 at all times)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.doMultithread">
+<span class="sig-name descname"><span class="pre">doMultithread</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.doMultithread" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.drawFlowOnPhyUsingInternalCoordinates">
+<span class="sig-name descname"><span class="pre">drawFlowOnPhyUsingInternalCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowNameToDraw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.drawFlowOnPhyUsingInternalCoordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.drawFlowOnPhyUsingInternalCoordinates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.drawOdgOfOneFlowUsingInternalCoordinates">
+<span class="sig-name descname"><span class="pre">drawOdgOfOneFlowUsingInternalCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.drawOdgOfOneFlowUsingInternalCoordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.drawOdgOfOneFlowUsingInternalCoordinates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.drawOdgUsingInternalCoordinates">
+<span class="sig-name descname"><span class="pre">drawOdgUsingInternalCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.drawOdgUsingInternalCoordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.drawOdgUsingInternalCoordinates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.drawPhyNetFromInternalCoordinates">
+<span class="sig-name descname"><span class="pre">drawPhyNetFromInternalCoordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.drawPhyNetFromInternalCoordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.drawPhyNetFromInternalCoordinates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.feedForwardComputation">
+<span class="sig-name descname"><span class="pre">feedForwardComputation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.feedForwardComputation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.feedForwardComputation" title="Permalink to this definition">#</a></dt>
+<dd><p>Perform the TFA computation</p>
+</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.flows">
+<span class="sig-name descname"><span class="pre">flows</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.Flow" title="xtfa.flows.Flow"><span class="pre">xtfa.flows.Flow</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.flows" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getDelayBoundFlowDestination">
+<span class="sig-name descname"><span class="pre">getDelayBoundFlowDestination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getDelayBoundFlowDestination"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getDelayBoundFlowDestination" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getDelayBoundFlowLeafVertex">
+<span class="sig-name descname"><span class="pre">getDelayBoundFlowLeafVertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getDelayBoundFlowLeafVertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getDelayBoundFlowLeafVertex" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getDrawPositionOfPort">
+<span class="sig-name descname"><span class="pre">getDrawPositionOfPort</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outPort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getDrawPositionOfPort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getDrawPositionOfPort" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getEteMaxBoundFlow">
+<span class="sig-name descname"><span class="pre">getEteMaxBoundFlow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowname</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getEteMaxBoundFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getEteMaxBoundFlow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getFlowFromName">
+<span class="sig-name descname"><span class="pre">getFlowFromName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="xtfa.flows.html#xtfa.flows.Flow" title="xtfa.flows.Flow"><span class="pre">xtfa.flows.Flow</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getFlowFromName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getFlowFromName" title="Permalink to this definition">#</a></dt>
+<dd><p>Obtain a Flow object from the flow name</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>flowName (str): name to look for</p>
+</dd>
+<dt>Returns:</dt><dd><p>Flow: the Flow whose name is the provided name</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundList">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getOrderedDelayUpperBoundList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundList" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the list of the delay upper bound, ordered in increasing values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[float]: the list of increasing delay upperbounds</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListOnePerFlow">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundListOnePerFlow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getOrderedDelayUpperBoundListOnePerFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListOnePerFlow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlines">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundListWithDeadlines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlines" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the ordered list of delay bounds, together with the deadlines</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Tuple[List[float],List[float]]: first element of the tuple, a list of the delay upperbounds, in increasing order. second element: a list of the corresponding deadlines, for the flows in the same order as in the previous list: not necessarely in increasing order, for example if a flow has a small delay bound and a high deadline.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlinesOnePerFlow">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundListWithDeadlinesOnePerFlow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlinesOnePerFlow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getOrderedDelayUpperBoundListWithDeadlinesOnePerFlow" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getReadyNodes">
+<span class="sig-name descname"><span class="pre">getReadyNodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getReadyNodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getReadyNodes" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getRemotePhyNode">
+<span class="sig-name descname"><span class="pre">getRemotePhyNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outputPort</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getRemotePhyNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getRemotePhyNode" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getServiceCurveIfAllSameForPhyNode">
+<span class="sig-name descname"><span class="pre">getServiceCurveIfAllSameForPhyNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phyNode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getServiceCurveIfAllSameForPhyNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getServiceCurveIfAllSameForPhyNode" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getServiceCurveOnNodeIfExistsInModel">
+<span class="sig-name descname"><span class="pre">getServiceCurveOnNodeIfExistsInModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.nodes.html#xtfa.nodes.Node" title="xtfa.nodes.Node"><span class="pre">xtfa.nodes.Node</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getServiceCurveOnNodeIfExistsInModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getServiceCurveOnNodeIfExistsInModel" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getWorstEteDelay">
+<span class="sig-name descname"><span class="pre">getWorstEteDelay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getWorstEteDelay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getWorstEteDelay" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.getWorstFlowDeadlineMargin">
+<span class="sig-name descname"><span class="pre">getWorstFlowDeadlineMargin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.getWorstFlowDeadlineMargin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.getWorstFlowDeadlineMargin" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.gif">
+<span class="sig-name descname"><span class="pre">gif</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">networkx.classes.digraph.DiGraph</span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.gif" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.isNodeReadyForComputation">
+<span class="sig-name descname"><span class="pre">isNodeReadyForComputation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeName</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.isNodeReadyForComputation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.isNodeReadyForComputation" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.netFlags">
+<span class="sig-name descname"><span class="pre">netFlags</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.netFlags" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.physicalTopo">
+<span class="sig-name descname"><span class="pre">physicalTopo</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">networkx.classes.graph.Graph</span></em><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.physicalTopo" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.printFlowResults">
+<span class="sig-name descname"><span class="pre">printFlowResults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.printFlowResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.printFlowResults" title="Permalink to this definition">#</a></dt>
+<dd><p>Prints the results for all flows</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.readyNodesCount">
+<span class="sig-name descname"><span class="pre">readyNodesCount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.readyNodesCount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.readyNodesCount" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.remainingNodesCount">
+<span class="sig-name descname"><span class="pre">remainingNodesCount</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.remainingNodesCount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.remainingNodesCount" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.save_delay_bounds_per_destination_in_file">
+<span class="sig-name descname"><span class="pre">save_delay_bounds_per_destination_in_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">listOfFlows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.save_delay_bounds_per_destination_in_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.save_delay_bounds_per_destination_in_file" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.save_delay_bounds_per_node_in_file">
+<span class="sig-name descname"><span class="pre">save_delay_bounds_per_node_in_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.save_delay_bounds_per_node_in_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.save_delay_bounds_per_node_in_file" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setArrivalCurveForAllFlowsAtSource">
+<span class="sig-name descname"><span class="pre">setArrivalCurveForAllFlowsAtSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setArrivalCurveForAllFlowsAtSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setArrivalCurveForAllFlowsAtSource" title="Permalink to this definition">#</a></dt>
+<dd><p>utility method that overwrites all the source arrival curve</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>curve (mpt.Curve): arrival curve to set to all flows</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setMultiThread">
+<span class="sig-name descname"><span class="pre">setMultiThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setMultiThread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setMultiThread" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setPacketSizeForAllFlows">
+<span class="sig-name descname"><span class="pre">setPacketSizeForAllFlows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxPacketSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPacketSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setPacketSizeForAllFlows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setPacketSizeForAllFlows" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to overwritte the packet sizes of all flows</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>maxPacketSize (int): max packet size to set
+minPacketSize (Optional[int], optional): min packet size to set. Defaults to 0.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setPlotDelayComputations">
+<span class="sig-name descname"><span class="pre">setPlotDelayComputations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeList</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setPlotDelayComputations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setPlotDelayComputations" title="Permalink to this definition">#</a></dt>
+<dd><p>Plots the delay in all the nodes provided in the node list</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>nodeList (List[str]): list of nodes on which to plot the computation of the delay</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setPlotPartitionResults">
+<span class="sig-name descname"><span class="pre">setPlotPartitionResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodeList</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setPlotPartitionResults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setPlotPartitionResults" title="Permalink to this definition">#</a></dt>
+<dd><p>Enable the plot of the partitions (for debuging) on selected nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>nodeList (List[str]): list of node on which to plot the partitions</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setReferenceLinkSpeedForAllPacketizers">
+<span class="sig-name descname"><span class="pre">setReferenceLinkSpeedForAllPacketizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linkSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setReferenceLinkSpeedForAllPacketizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setReferenceLinkSpeedForAllPacketizers" title="Permalink to this definition">#</a></dt>
+<dd><p>Set the transmission rate for all packetizers in all nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>linkSpeed (float): tranmission rate used by the packetizer model</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setServiceCurveForAllFifoContentionSteps">
+<span class="sig-name descname"><span class="pre">setServiceCurveForAllFifoContentionSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setServiceCurveForAllFifoContentionSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setServiceCurveForAllFifoContentionSteps" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to overwritte the service curve of all nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>serviceCurve (mpt.Curve): the service curve to set</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setShapingCapacityForAllInputShapingSteps">
+<span class="sig-name descname"><span class="pre">setShapingCapacityForAllInputShapingSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapingCapacity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setShapingCapacityForAllInputShapingSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setShapingCapacityForAllInputShapingSteps" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to overwritte the shaping capacity (ie transmission rate) of all nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>shapingCapacity (float): the shaping capacity to set</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.setTransmissionSpeedForAllMohammadpourImprovementSteps">
+<span class="sig-name descname"><span class="pre">setTransmissionSpeedForAllMohammadpourImprovementSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transmissionSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.setTransmissionSpeedForAllMohammadpourImprovementSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.setTransmissionSpeedForAllMohammadpourImprovementSteps" title="Permalink to this definition">#</a></dt>
+<dd><p>Method to overwritte the tranmission rate for the Mohammadpour improvement in all nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>transmissionSpeed (float): transmission rate to set</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.FeedForwardNetwork.stringMinMaxDelayUpperBound">
+<span class="sig-name descname"><span class="pre">stringMinMaxDelayUpperBound</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#FeedForwardNetwork.stringMinMaxDelayUpperBound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.FeedForwardNetwork.stringMinMaxDelayUpperBound" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns min/max delay upper bounds across all flows</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.networks.</span></span><span class="sig-name descname"><span class="pre">NetworkInterface</span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Minimum interface to be implemented by a network</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.auto_install_pipelines">
+<span class="sig-name descname"><span class="pre">auto_install_pipelines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.auto_install_pipelines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.auto_install_pipelines" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.compute" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.getDelayBoundFlowDestination">
+<span class="sig-name descname"><span class="pre">getDelayBoundFlowDestination</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flowName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.getDelayBoundFlowDestination"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.getDelayBoundFlowDestination" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.getNodeUsage">
+<span class="sig-name descname"><span class="pre">getNodeUsage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Mapping</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.getNodeUsage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.getNodeUsage" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.getOrderedDelayUpperBoundList">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.getOrderedDelayUpperBoundList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.getOrderedDelayUpperBoundList" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the list of the delay upper bound, ordered in increasing values</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>List[float]: the list of increasing delay upperbounds</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.getOrderedDelayUpperBoundListWithDeadlines">
+<span class="sig-name descname"><span class="pre">getOrderedDelayUpperBoundListWithDeadlines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.getOrderedDelayUpperBoundListWithDeadlines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.getOrderedDelayUpperBoundListWithDeadlines" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the ordered list of delay bounds, together with the deadlines</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Tuple[List[float],List[float]]: first element of the tuple, a list of the delay upperbounds, in increasing order. second element: a list of the corresponding deadlines, for the flows in the same order as in the previous list: not necessarely in increasing order, for example if a flow has a small delay bound and a high deadline.</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.getWorstFlowDeadlineMargin">
+<span class="sig-name descname"><span class="pre">getWorstFlowDeadlineMargin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.getWorstFlowDeadlineMargin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.getWorstFlowDeadlineMargin" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.printMinMaxDelayUpperBound">
+<span class="sig-name descname"><span class="pre">printMinMaxDelayUpperBound</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.printMinMaxDelayUpperBound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.printMinMaxDelayUpperBound" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setArrivalCurveForAllFlowsAtSource">
+<span class="sig-name descname"><span class="pre">setArrivalCurveForAllFlowsAtSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setArrivalCurveForAllFlowsAtSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setArrivalCurveForAllFlowsAtSource" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setMultiThread">
+<span class="sig-name descname"><span class="pre">setMultiThread</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setMultiThread"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setMultiThread" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setPacketSizeForAllFlows">
+<span class="sig-name descname"><span class="pre">setPacketSizeForAllFlows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maxPacketSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minPacketSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setPacketSizeForAllFlows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setPacketSizeForAllFlows" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setPlotDelayComputations">
+<span class="sig-name descname"><span class="pre">setPlotDelayComputations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setPlotDelayComputations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setPlotDelayComputations" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setReferenceLinkSpeedForAllPacketizers">
+<span class="sig-name descname"><span class="pre">setReferenceLinkSpeedForAllPacketizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">linkSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setReferenceLinkSpeedForAllPacketizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setReferenceLinkSpeedForAllPacketizers" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setServiceCurveForAllFifoContentionSteps">
+<span class="sig-name descname"><span class="pre">setServiceCurveForAllFifoContentionSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="xtfa.minPlusToolbox.html#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setServiceCurveForAllFifoContentionSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setServiceCurveForAllFifoContentionSteps" title="Permalink to this definition">#</a></dt>
+<dd><p>Sets the service curve of all the FIFO queing elements in the network (the FIFO contention step in the contention pipeline). This must be called AFTER the micromodels have been installed on the nodes</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>serviceCurve (mpt.Curve): the service curve to set</p>
+</dd>
+<dt>Raises:</dt><dd><p>NotImplementedError: in case the subclass does not override</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setShapingCapacityForAllInputShapingSteps">
+<span class="sig-name descname"><span class="pre">setShapingCapacityForAllInputShapingSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapingCapacity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setShapingCapacityForAllInputShapingSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setShapingCapacityForAllInputShapingSteps" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.NetworkInterface.setTransmissionSpeedForAllMohammadpourImprovementSteps">
+<span class="sig-name descname"><span class="pre">setTransmissionSpeedForAllMohammadpourImprovementSteps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transmissionSpeed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#NetworkInterface.setTransmissionSpeedForAllMohammadpourImprovementSteps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.NetworkInterface.setTransmissionSpeedForAllMohammadpourImprovementSteps" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.networks.</span></span><span class="sig-name descname"><span class="pre">ProcessANode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#ProcessANode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.ProcessANode" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">threading.Thread</span></code></p>
+<p>This class is used to compute all the pipelines of a node.
+As a sub-class of Thread, we can spawn it, resulting in several nodes computed at the same time</p>
+<dl class="simple">
+<dt>Inheritance:</dt><dd><p>threading.Thread:</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode.computeNode">
+<span class="sig-name descname"><span class="pre">computeNode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#ProcessANode.computeNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.ProcessANode.computeNode" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode.postpone">
+<span class="sig-name descname"><span class="pre">postpone</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#xtfa.networks.ProcessANode.postpone" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode.prepareNode">
+<span class="sig-name descname"><span class="pre">prepareNode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#ProcessANode.prepareNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.ProcessANode.prepareNode" title="Permalink to this definition">#</a></dt>
+<dd><p>This method reports the flow states from the the network’s gif (graph induced by flows) to the input of the node model</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode.propagate">
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#ProcessANode.propagate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.ProcessANode.propagate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.ProcessANode.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#ProcessANode.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.ProcessANode.run" title="Permalink to this definition">#</a></dt>
+<dd><p>Method representing the thread’s activity.</p>
+<p>You may override this method in a subclass. The standard run() method
+invokes the callable object passed to the object’s constructor as the
+target argument, if any, with sequential and keyword arguments taken
+from the args and kwargs arguments, respectively.</p>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.networks.</span></span><span class="sig-name descname"><span class="pre">WopanetReader</span></span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is an utility class that reads the file format of wopanet</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.configure_network_from_xml">
+<span class="sig-name descname"><span class="pre">configure_network_from_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmlFileName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.configure_network_from_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.configure_network_from_xml" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.getOutportNameAndPropertiesFromPhy">
+<span class="sig-name descname"><span class="pre">getOutportNameAndPropertiesFromPhy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phyGraph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">networkx.classes.graph.Graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phyNodeFrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phyNodeTo</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.getOutportNameAndPropertiesFromPhy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.getOutportNameAndPropertiesFromPhy" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.getPhyEdgeFromName">
+<span class="sig-name descname"><span class="pre">getPhyEdgeFromName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">edgeName</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.getPhyEdgeFromName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.getPhyEdgeFromName" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.keysInWopanetXML">
+<span class="sig-name descname"><span class="pre">keysInWopanetXML</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'end_system':</span> <span class="pre">'station',</span> <span class="pre">'flow':</span> <span class="pre">'flow',</span> <span class="pre">'flow_path':</span> <span class="pre">'target',</span> <span class="pre">'flow_path_step':</span> <span class="pre">'path',</span> <span class="pre">'flow_path_step_name':</span> <span class="pre">'node',</span> <span class="pre">'link':</span> <span class="pre">'link',</span> <span class="pre">'link_from':</span> <span class="pre">'from',</span> <span class="pre">'link_name':</span> <span class="pre">'name',</span> <span class="pre">'link_to':</span> <span class="pre">'to',</span> <span class="pre">'network':</span> <span class="pre">'network',</span> <span class="pre">'network_name':</span> <span class="pre">'name',</span> <span class="pre">'phy_node_name':</span> <span class="pre">'name',</span> <span class="pre">'switch':</span> <span class="pre">'switch'}</span></em><a class="headerlink" href="#xtfa.networks.WopanetReader.keysInWopanetXML" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.populateFlows">
+<span class="sig-name descname"><span class="pre">populateFlows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xml.etree.ElementTree.Element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.populateFlows"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.populateFlows" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.populateNetworkName">
+<span class="sig-name descname"><span class="pre">populateNetworkName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xml.etree.ElementTree.Element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.populateNetworkName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.populateNetworkName" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.populateOdg">
+<span class="sig-name descname"><span class="pre">populateOdg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xml.etree.ElementTree.Element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.populateOdg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.populateOdg" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.populatePhyTopo">
+<span class="sig-name descname"><span class="pre">populatePhyTopo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xml.etree.ElementTree.Element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.populatePhyTopo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.populatePhyTopo" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.networks.WopanetReader.setComputationnalFlags">
+<span class="sig-name descname"><span class="pre">setComputationnalFlags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.networks.FeedForwardNetwork" title="xtfa.networks.FeedForwardNetwork"><span class="pre">xtfa.networks.FeedForwardNetwork</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">root</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">xml.etree.ElementTree.Element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/networks.html#WopanetReader.setComputationnalFlags"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.networks.WopanetReader.setComputationnalFlags" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="xtfa.nodes.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">xtfa.nodes module</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="xtfa.minPlusToolbox.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">xtfa.minPlusToolbox module</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Ludovic Thomas
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

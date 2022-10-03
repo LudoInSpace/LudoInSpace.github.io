@@ -1,0 +1,53 @@
+xtfa.minPlusToolbox
+===================
+
+.. automodule:: xtfa.minPlusToolbox
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      copydoc
+      plot_a_delay_computation
+      plot_an_arrival_curve
+      plot_arrival_curves
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BoundedDelayServiceCurve
+      Curve
+      DGVBR
+      GVBR
+      InfiniteCurve
+      LeakyBucket
+      MaxOfRateLantencies
+      NoCurve
+      RateLatencyServiceCurve
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+   
+      ArrivalCurveNotDefinedForThisValue
+      LocallyUnstableSystem
+   
+   
+
+
+

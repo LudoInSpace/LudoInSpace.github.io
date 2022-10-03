@@ -1,0 +1,29 @@
+xtfa.baharevMfas
+================
+
+.. automodule:: xtfa.baharevMfas
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      BaharevMfas
+   
+   
+
+   
+   
+   
+
+
+

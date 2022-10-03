@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>xtfa.inputPipelines &#8212; xTFA 2022-07 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="xtfa.lcan" href="xtfa.lcan.html" />
+    <link rel="prev" title="xtfa.graphUtility" href="xtfa.graphUtility.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-xtfa.inputPipelines">
+<span id="xtfa-inputpipelines"></span><h1>xtfa.inputPipelines<a class="headerlink" href="#module-xtfa.inputPipelines" title="Permalink to this headline">¶</a></h1>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CutThroughInputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This implementation of InputPipelineStep represents the effect of the packetizers located on the input ports of the network switch.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowsPartition</span></code>()</p></td>
+<td><p>This class represents a partition of the flow states into partition elements</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowsPartitionElement</span></code>()</p></td>
+<td><p>This class represents an element in the partition of the flow states.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InitialPerInputPortAggregatorInputPipelineStep</span></code>(...)</p></td>
+<td><p>This implementation of InputPipelineStep is always the first computational block in any pipeline (see the exception for development purposes in checkInstall).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InputPipeline</span></code>(nodeName)</p></td>
+<td><p>This object represents an input pipeline. The role of the input pipeline is to compute the arrival curve of the aggregate arriving at the queuing subsystem. A pipeline is made of successive pipeline steps.Each pipeline step may:</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This interface represents a computational steps that: - May modify the flow states - May group flows into aggregates that are then shaped by a curve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">InputPortShapingInputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This implementation of InputPipelineStep represents the effect of the input line shaping on the incoming flows.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalSourceApplicationsInputPipelineStep</span></code>(...)</p></td>
+<td><p>This implementation of InputPipelineStep represents the internal application that locally generate packets</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PacketEliminationFunctionFlowStateForceMergingInputPipelineStep</span></code>(...)</p></td>
+<td><p>This computational block forces the flow states of a same flow to be merged into a single flow state prior to being sent to a regulator.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PacketEliminationFunctionInputPipelineStep</span></code>(...)</p></td>
+<td><p>This implementation of InputPipelineStep represents the effect of the packet elimination functions on the aggregate arrival curve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PacketOrderingFunctionInputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This computational block represent a set of // POF, either per flow or per-aggregate:</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">PacketizationInputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This implementation of InputPipelineStep represents the effect of the packetizers located on the input ports of the network switch.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RegulatorInputPipelineStep</span></code>(nodeName)</p></td>
+<td><p>This computational block represent either:</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">xTFA</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="xtfa.html">xtfa</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../api.html">API</a><ul>
+  <li><a href="xtfa.html">xtfa</a><ul>
+      <li>Previous: <a href="xtfa.graphUtility.html" title="previous chapter">xtfa.graphUtility</a></li>
+      <li>Next: <a href="xtfa.lcan.html" title="next chapter">xtfa.lcan</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Ludovic Thomas.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generated/xtfa.inputPipelines.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,37 @@
+xtfa.outputPipelines
+====================
+
+.. automodule:: xtfa.outputPipelines
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      CeilBurstsOutputPipelineStep
+      ConstantPropagationDelayOutputPipelineStep
+      DeltaDDeconvolutionOutputPipelineStep
+      FromKeyTaggingOutputPipelineStep
+      FromSourceDeltaDDeconvolutionOutputPipelineStep
+      OutputPipeline
+      OutputPipelineStep
+      PacketEliminationFunctionFlowStateMergingOutputPipelineStep
+      TransmissionDelayOnlyAddMinimumDelayDoNotChangeMaxDelay
+   
+   
+
+   
+   
+   
+
+
+

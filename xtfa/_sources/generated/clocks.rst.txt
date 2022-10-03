@@ -1,0 +1,29 @@
+﻿clocks
+======
+
+.. automodule:: clocks
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+   
+      Clock
+   
+   
+
+   
+   
+   
+
+
+

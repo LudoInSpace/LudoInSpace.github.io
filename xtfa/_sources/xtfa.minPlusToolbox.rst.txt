@@ -1,0 +1,7 @@
+xtfa.minPlusToolbox module
+==========================
+
+.. automodule:: xtfa.minPlusToolbox
+   :members:
+   :undoc-members:
+   :show-inheritance:

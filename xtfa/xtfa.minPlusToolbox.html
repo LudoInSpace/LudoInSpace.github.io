@@ -1,0 +1,1194 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="xtfa.networks module" href="xtfa.networks.html" /><link rel="prev" title="xtfa.lcan module" href="xtfa.lcan.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>xtfa.minPlusToolbox module - xTFA 2022-07 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">xTFA 2022-07 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">xTFA 2022-07 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="relationmanuscript.html">Relations Between the Notions of the Manuscript and their Implementation in the Tool</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">xtfa</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="xtfa.html">xtfa package</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="xtfa.GurobiInterface.html">xtfa.GurobiInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.MilpInterface.html">xtfa.MilpInterface module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.baharevMfas.html">xtfa.baharevMfas module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.clocks.html">xtfa.clocks module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.contentionPipelines.html">xtfa.contentionPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.fasUtility.html">xtfa.fasUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.flows.html">xtfa.flows module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.graphUtility.html">xtfa.graphUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.inputPipelines.html">xtfa.inputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.lcan.html">xtfa.lcan module</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">xtfa.minPlusToolbox module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.networks.html">xtfa.networks module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.nodes.html">xtfa.nodes module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.outputPipelines.html">xtfa.outputPipelines module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.plotUtility.html">xtfa.plotUtility module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="xtfa.unitUtility.html">xtfa.unitUtility module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="module-xtfa.minPlusToolbox">
+<span id="xtfa-minplustoolbox-module"></span><h1>xtfa.minPlusToolbox module<a class="headerlink" href="#module-xtfa.minPlusToolbox" title="Permalink to this headline">#</a></h1>
+<p>This module contains a toolbox for classical min-plus curves and min-plus operations</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.ArrivalCurveNotDefinedForThisValue">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">ArrivalCurveNotDefinedForThisValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s_value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#ArrivalCurveNotDefinedForThisValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.ArrivalCurveNotDefinedForThisValue" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.ArrivalCurveNotDefinedForThisValue.getSValue">
+<span class="sig-name descname"><span class="pre">getSValue</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#ArrivalCurveNotDefinedForThisValue.getSValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.ArrivalCurveNotDefinedForThisValue.getSValue" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.BoundedDelayServiceCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">BoundedDelayServiceCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundedDelay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#BoundedDelayServiceCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.BoundedDelayServiceCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.BoundedDelayServiceCurve.getDelay">
+<span class="sig-name descname"><span class="pre">getDelay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#BoundedDelayServiceCurve.getDelay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.BoundedDelayServiceCurve.getDelay" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#BoundedDelayServiceCurve.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#BoundedDelayServiceCurve.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#BoundedDelayServiceCurve.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.BoundedDelayServiceCurve.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">Curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>General interface for arrival curves</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.ceil_bursts">
+<span class="sig-name descname"><span class="pre">ceil_bursts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.ceil_bursts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.ceil_bursts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_interesting_xmax_for_plot">
+<span class="sig-name descname"><span class="pre">get_interesting_xmax_for_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_interesting_xmax_for_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_interesting_xmax_for_plot" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_max_vertical_distance">
+<span class="sig-name descname"><span class="pre">get_max_vertical_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_max_vertical_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_max_vertical_distance" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_packetization_penalty_curve">
+<span class="sig-name descname"><span class="pre">get_packetization_penalty_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_packetization_penalty_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_packetization_penalty_curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns only the penalty due to packetization.
+Ie self.addPacketizationEffectReturnNewCurve() = self + self.getPacketizationPenaltyCurve()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.is_dominating">
+<span class="sig-name descname"><span class="pre">is_dominating</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.is_dominating"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.is_dominating" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns True if self is dominating other. 
+That is for all t&gt;=0, self(t) &gt;= other(t)</p>
+<p>in convex piecewise linear curve, self dominates other if self * other is the same as other</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.return_curve_with_packetization">
+<span class="sig-name descname"><span class="pre">return_curve_with_packetization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.return_curve_with_packetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.return_curve_with_packetization" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new curve that is representing self, whose burst has been increased due to a packetizer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>packetMaxSize (int): the maximum packet size for the flow packetized
+<a href="#id1"><span class="problematic" id="id2">**</span></a>link_capacity (float): (optional) the capacity of the input link to which the packetizer is connected</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the arrival curve with augmented burst due to packetization</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.set_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.set_name" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.to_leaky_bucket_with_minimum_burst">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.to_leaky_bucket_with_minimum_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.to_leaky_bucket_with_minimum_burst" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum burst among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.to_leaky_bucket_with_minimum_rate">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.to_leaky_bucket_with_minimum_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.to_leaky_bucket_with_minimum_rate" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum rate among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.worsen_arrival_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.worsen_arrival_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.worsen_arrival_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock
+When the network is not synchronized</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.worsen_arrival_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.worsen_arrival_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.worsen_arrival_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock.
+When the network is synchronized.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network
+delta (float): synchronization precision</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.worsen_service_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_service_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.worsen_service_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.worsen_service_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.Curve.worsen_service_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_service_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#Curve.worsen_service_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.Curve.worsen_service_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">DGVBR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gvbr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.GVBR" title="xtfa.minPlusToolbox.GVBR"><span class="pre">xtfa.minPlusToolbox.GVBR</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR.get_gvbr">
+<span class="sig-name descname"><span class="pre">get_gvbr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.GVBR" title="xtfa.minPlusToolbox.GVBR"><span class="pre">xtfa.minPlusToolbox.GVBR</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR.get_gvbr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR.get_gvbr" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR.get_latency">
+<span class="sig-name descname"><span class="pre">get_latency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR.get_latency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR.get_latency" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.DGVBR.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#DGVBR.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.DGVBR.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">GVBR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<p>Generalized VBR arrival curve - see example and proposition 1.4.1 of the network calculus book
+A convolution of 2 or more leaky-bucket arrival curves</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.ceil_bursts">
+<span class="sig-name descname"><span class="pre">ceil_bursts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.ceil_bursts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.ceil_bursts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.copy_remove_duplicates">
+<span class="sig-name descname"><span class="pre">copy_remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialList</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.copy_remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.copy_remove_duplicates" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_burst">
+<span class="sig-name descname"><span class="pre">get_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_burst" title="Permalink to this definition">#</a></dt>
+<dd><p>Return the burst of the most bursty leaky-bucket</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>float: The burst of the most bursty leaky-bucket</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_delay_bound_location">
+<span class="sig-name descname"><span class="pre">get_delay_bound_location</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve" title="xtfa.minPlusToolbox.RateLatencyServiceCurve"><span class="pre">xtfa.minPlusToolbox.RateLatencyServiceCurve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_delay_bound_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_delay_bound_location" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_discontinuity_list">
+<span class="sig-name descname"><span class="pre">get_discontinuity_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_discontinuity_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_discontinuity_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_first_lb">
+<span class="sig-name descname"><span class="pre">get_first_lb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_first_lb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_first_lb" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_first_left_lb_index">
+<span class="sig-name descname"><span class="pre">get_first_left_lb_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_first_left_lb_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_first_left_lb_index" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_index_list">
+<span class="sig-name descname"><span class="pre">get_index_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_index_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_index_list" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_interesting_xmax_for_plot">
+<span class="sig-name descname"><span class="pre">get_interesting_xmax_for_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_interesting_xmax_for_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_interesting_xmax_for_plot" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_lb_with_smallest_rate">
+<span class="sig-name descname"><span class="pre">get_lb_with_smallest_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_lb_with_smallest_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_lb_with_smallest_rate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_max_vertical_distance">
+<span class="sig-name descname"><span class="pre">get_max_vertical_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_max_vertical_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_max_vertical_distance" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_packetization_penalty_curve">
+<span class="sig-name descname"><span class="pre">get_packetization_penalty_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_packetization_penalty_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_packetization_penalty_curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns only the penalty due to packetization.
+Ie self.addPacketizationEffectReturnNewCurve() = self + self.getPacketizationPenaltyCurve()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.return_curve_with_packetization">
+<span class="sig-name descname"><span class="pre">return_curve_with_packetization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.return_curve_with_packetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.return_curve_with_packetization" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new curve that is representing self, whose burst has been increased due to a packetizer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>packetMaxSize (int): the maximum packet size for the flow packetized
+<a href="#id3"><span class="problematic" id="id4">**</span></a>link_capacity (float): (optional) the capacity of the input link to which the packetizer is connected</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the arrival curve with augmented burst due to packetization</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.simplify">
+<span class="sig-name descname"><span class="pre">simplify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.simplify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.simplify" title="Permalink to this definition">#</a></dt>
+<dd><p>Simplify to a leaky bucket object if self is composed of a unique leakybucket</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Curve: either self or its unique leaky bucket if self is made of one unisue LB</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.to_leaky_bucket_with_minimum_burst">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.to_leaky_bucket_with_minimum_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.to_leaky_bucket_with_minimum_burst" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum burst among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.to_leaky_bucket_with_minimum_rate">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.to_leaky_bucket_with_minimum_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.to_leaky_bucket_with_minimum_rate" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum rate among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.worsen_arrival_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.worsen_arrival_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.worsen_arrival_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock
+When the network is not synchronized</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.worsen_arrival_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.worsen_arrival_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.worsen_arrival_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock.
+When the network is synchronized.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network
+delta (float): synchronization precision</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.GVBR.y_to_x">
+<span class="sig-name descname"><span class="pre">y_to_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#GVBR.y_to_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.GVBR.y_to_x" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">InfiniteCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<p>this corresponds to delta_0</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.get_packetization_penalty_curve">
+<span class="sig-name descname"><span class="pre">get_packetization_penalty_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.get_packetization_penalty_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.get_packetization_penalty_curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns only the penalty due to packetization.
+Ie self.addPacketizationEffectReturnNewCurve() = self + self.getPacketizationPenaltyCurve()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.return_curve_with_packetization">
+<span class="sig-name descname"><span class="pre">return_curve_with_packetization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.return_curve_with_packetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.return_curve_with_packetization" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new curve that is representing self, whose burst has been increased due to a packetizer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>packetMaxSize (int): the maximum packet size for the flow packetized
+<a href="#id5"><span class="problematic" id="id6">**</span></a>link_capacity (float): (optional) the capacity of the input link to which the packetizer is connected</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the arrival curve with augmented burst due to packetization</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.worsen_arrival_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.worsen_arrival_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.worsen_arrival_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock
+When the network is not synchronized</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.InfiniteCurve.worsen_arrival_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#InfiniteCurve.worsen_arrival_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.InfiniteCurve.worsen_arrival_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock.
+When the network is synchronized.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network
+delta (float): synchronization precision</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">LeakyBucket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<p>Leaky-bucket arrival curve: alpha(s) = s*self._rate + self.burst</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.ceil_bursts">
+<span class="sig-name descname"><span class="pre">ceil_bursts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.ceil_bursts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.ceil_bursts" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.compute_intersection">
+<span class="sig-name descname"><span class="pre">compute_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lbArrival</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.compute_intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.compute_intersection" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the intersection point with another leaky-bucket arrival curbe</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>lbArrival {LeakyBucket} – the leaky bucket arrival curve whith which to compute the</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>tuple – (x_inter,belowBefore)<span class="classifier">with x_inter, the intersection point between the two leaky buckets, or -1 if they have the same rate</span></dt><dd><p>belowBefore is true if self is before the intersection, false otherwise. If x_inter = -1, belowBefore is true if self is below lbArrival everywhere.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_burst">
+<span class="sig-name descname"><span class="pre">get_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_burst" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_interesting_xmax_for_plot">
+<span class="sig-name descname"><span class="pre">get_interesting_xmax_for_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_interesting_xmax_for_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_interesting_xmax_for_plot" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_max_vertical_distance">
+<span class="sig-name descname"><span class="pre">get_max_vertical_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_max_vertical_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_max_vertical_distance" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_packetization_penalty_curve">
+<span class="sig-name descname"><span class="pre">get_packetization_penalty_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_packetization_penalty_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_packetization_penalty_curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns only the penalty due to packetization.
+Ie self.addPacketizationEffectReturnNewCurve() = self + self.getPacketizationPenaltyCurve()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_rate">
+<span class="sig-name descname"><span class="pre">get_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_rate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.is_same_lb">
+<span class="sig-name descname"><span class="pre">is_same_lb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.is_same_lb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.is_same_lb" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.rate_burst_string_pair">
+<span class="sig-name descname"><span class="pre">rate_burst_string_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.rate_burst_string_pair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.rate_burst_string_pair" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.return_curve_with_packetization">
+<span class="sig-name descname"><span class="pre">return_curve_with_packetization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.return_curve_with_packetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.return_curve_with_packetization" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new curve that is representing self, whose burst has been increased due to a packetizer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>packetMaxSize (int): the maximum packet size for the flow packetized
+<a href="#id7"><span class="problematic" id="id8">**</span></a>link_capacity (float): (optional) the capacity of the input link to which the packetizer is connected</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the arrival curve with augmented burst due to packetization</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.to_leaky_bucket_with_minimum_burst">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.to_leaky_bucket_with_minimum_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.to_leaky_bucket_with_minimum_burst" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum burst among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.to_leaky_bucket_with_minimum_rate">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.to_leaky_bucket_with_minimum_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.to_leaky_bucket_with_minimum_rate" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum rate among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.worsen_arrival_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.worsen_arrival_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.worsen_arrival_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock
+When the network is not synchronized</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.worsen_arrival_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.worsen_arrival_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.worsen_arrival_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock.
+When the network is synchronized.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network
+delta (float): synchronization precision</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LeakyBucket.yToX">
+<span class="sig-name descname"><span class="pre">yToX</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LeakyBucket.yToX"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LeakyBucket.yToX" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py exception">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.LocallyUnstableSystem">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">LocallyUnstableSystem</span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#LocallyUnstableSystem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.LocallyUnstableSystem" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">MaxOfRateLantencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve" title="xtfa.minPlusToolbox.RateLatencyServiceCurve"><span class="pre">xtfa.minPlusToolbox.RateLatencyServiceCurve</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<p>Describes the maximum of several rate-latency service curves</p>
+<dl class="simple">
+<dt>Inheritance:</dt><dd><p>Curve:</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies.max_with_rate_latency">
+<span class="sig-name descname"><span class="pre">max_with_rate_latency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve" title="xtfa.minPlusToolbox.RateLatencyServiceCurve"><span class="pre">xtfa.minPlusToolbox.RateLatencyServiceCurve</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies.max_with_rate_latency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies.max_with_rate_latency" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.MaxOfRateLantencies.y_to_x">
+<span class="sig-name descname"><span class="pre">y_to_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#MaxOfRateLantencies.y_to_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.MaxOfRateLantencies.y_to_x" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">NoCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<p>Arrival curve of a ‘no flow’</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.get_packetization_penalty_curve">
+<span class="sig-name descname"><span class="pre">get_packetization_penalty_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.get_packetization_penalty_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.get_packetization_penalty_curve" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns only the penalty due to packetization.
+Ie self.addPacketizationEffectReturnNewCurve() = self + self.getPacketizationPenaltyCurve()</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.return_curve_with_packetization">
+<span class="sig-name descname"><span class="pre">return_curve_with_packetization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">packetMaxSize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.return_curve_with_packetization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.return_curve_with_packetization" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns a new curve that is representing self, whose burst has been increased due to a packetizer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>packetMaxSize (int): the maximum packet size for the flow packetized
+<a href="#id9"><span class="problematic" id="id10">**</span></a>link_capacity (float): (optional) the capacity of the input link to which the packetizer is connected</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the arrival curve with augmented burst due to packetization</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.to_leaky_bucket_with_minimum_burst">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_burst</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.to_leaky_bucket_with_minimum_burst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.to_leaky_bucket_with_minimum_burst" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum burst among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.to_leaky_bucket_with_minimum_rate">
+<span class="sig-name descname"><span class="pre">to_leaky_bucket_with_minimum_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.LeakyBucket" title="xtfa.minPlusToolbox.LeakyBucket"><span class="pre">xtfa.minPlusToolbox.LeakyBucket</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.to_leaky_bucket_with_minimum_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.to_leaky_bucket_with_minimum_rate" title="Permalink to this definition">#</a></dt>
+<dd><dl class="simple">
+<dt>Returns the leaky-bucket arrival curve that </dt><dd><ul class="simple">
+<li><p>dominates the curve self</p></li>
+<li><p>is not dominated</p></li>
+<li><p>has the minimum rate among the leaky-bucket satifying the above conditions</p></li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>LeakyBucket: the leaky bucket meeting the above rules</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.worsen_arrival_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.worsen_arrival_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.worsen_arrival_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock
+When the network is not synchronized</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.NoCurve.worsen_arrival_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_arrival_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#NoCurve.worsen_arrival_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.NoCurve.worsen_arrival_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd><p>Worsen the arrival curve because we change the observing clock.
+When the network is synchronized.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>rho (float): stability bound of the clocks in the network
+eta (float): time-jitter bound of the clocks in the network
+delta (float): synchronization precision</p>
+</dd>
+<dt>Returns:</dt><dd><p>Curve: the worsened curve</p>
+</dd>
+</dl>
+</dd></dl>
+</dd></dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">RateLatencyServiceCurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latency</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><code class="xref py py-class docutils literal notranslate"><span class="pre">xtfa.minPlusToolbox.Curve</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.compute_intersection">
+<span class="sig-name descname"><span class="pre">compute_intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve" title="xtfa.minPlusToolbox.RateLatencyServiceCurve"><span class="pre">xtfa.minPlusToolbox.RateLatencyServiceCurve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.compute_intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.compute_intersection" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the (x,y) intersection with rl</p>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.get_latency">
+<span class="sig-name descname"><span class="pre">get_latency</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.get_latency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.get_latency" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.get_rate">
+<span class="sig-name descname"><span class="pre">get_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.get_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.get_rate" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s">
+<span class="sig-name descname"><span class="pre">get_value_at_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.get_value_at_s"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the value of the arrival curve at s - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – the value at which to compute the arrival curve</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – the value of the arrival curve at s - if it exists</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s_moins">
+<span class="sig-name descname"><span class="pre">get_value_at_s_moins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.get_value_at_s_moins"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s_moins" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&lt;s} of the value of the arrival curve - if it exists</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&lt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s_plus">
+<span class="sig-name descname"><span class="pre">get_value_at_s_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.get_value_at_s_plus"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.get_value_at_s_plus" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns lim_{x-&gt;s,x&gt;s} of the value of the arrival curve</p>
+<dl class="simple">
+<dt>Arguments:</dt><dd><p>s {float} – s</p>
+</dd>
+<dt>Returns:</dt><dd><p>float – lim_{x-&gt;s,x&gt;s}(alpha(x))</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.substract_latest_lb">
+<span class="sig-name descname"><span class="pre">substract_latest_lb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curveToSubstract</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.substract_latest_lb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.substract_latest_lb" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.worsen_service_curve_due_to_clock_async">
+<span class="sig-name descname"><span class="pre">worsen_service_curve_due_to_clock_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.worsen_service_curve_due_to_clock_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.worsen_service_curve_due_to_clock_async" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.worsen_service_curve_due_to_clock_sync">
+<span class="sig-name descname"><span class="pre">worsen_service_curve_due_to_clock_sync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.worsen_service_curve_due_to_clock_sync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.worsen_service_curve_due_to_clock_sync" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.RateLatencyServiceCurve.y_to_x">
+<span class="sig-name descname"><span class="pre">y_to_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#RateLatencyServiceCurve.y_to_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.RateLatencyServiceCurve.y_to_x" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.copydoc">
+<span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">copydoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fromfunc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\n'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#copydoc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.copydoc" title="Permalink to this definition">#</a></dt>
+<dd><p>Decorator: Copy the docstring of <cite>fromfunc</cite></p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.plot_a_delay_computation">
+<span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">plot_a_delay_computation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrivalCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">serviceCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#plot_a_delay_computation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.plot_a_delay_computation" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.plot_an_arrival_curve">
+<span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">plot_an_arrival_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrivalCurve</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#plot_an_arrival_curve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.plot_an_arrival_curve" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="xtfa.minPlusToolbox.plot_arrival_curves">
+<span class="sig-prename descclassname"><span class="pre">xtfa.minPlusToolbox.</span></span><span class="sig-name descname"><span class="pre">plot_arrival_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrivalCurves</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#xtfa.minPlusToolbox.Curve" title="xtfa.minPlusToolbox.Curve"><span class="pre">xtfa.minPlusToolbox.Curve</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xtfa/minPlusToolbox.html#plot_arrival_curves"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xtfa.minPlusToolbox.plot_arrival_curves" title="Permalink to this definition">#</a></dt>
+<dd><p>Description of plotArrivalCurves</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p><a href="#id11"><span class="problematic" id="id12">*</span></a>arrivalCurves (Curve): arrival curves to plot</p>
+</dd>
+</dl>
+</dd></dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="xtfa.networks.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">xtfa.networks module</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="xtfa.lcan.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">xtfa.lcan module</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Ludovic Thomas
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

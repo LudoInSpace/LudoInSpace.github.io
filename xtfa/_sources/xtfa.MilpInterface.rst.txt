@@ -1,0 +1,7 @@
+xtfa.MilpInterface module
+=========================
+
+.. automodule:: xtfa.MilpInterface
+   :members:
+   :undoc-members:
+   :show-inheritance:
