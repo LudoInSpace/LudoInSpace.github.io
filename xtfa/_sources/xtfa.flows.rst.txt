@@ -1,7 +1,0 @@
-xtfa.flows module
-=================
-
-.. automodule:: xtfa.flows
-   :members:
-   :undoc-members:
-   :show-inheritance:

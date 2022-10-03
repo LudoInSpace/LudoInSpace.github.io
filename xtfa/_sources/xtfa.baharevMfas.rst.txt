@@ -1,7 +1,0 @@
-xtfa.baharevMfas module
-=======================
-
-.. automodule:: xtfa.baharevMfas
-   :members:
-   :undoc-members:
-   :show-inheritance:

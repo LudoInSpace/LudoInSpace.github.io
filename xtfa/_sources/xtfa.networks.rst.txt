@@ -1,7 +1,0 @@
-xtfa.networks module
-====================
-
-.. automodule:: xtfa.networks
-   :members:
-   :undoc-members:
-   :show-inheritance:

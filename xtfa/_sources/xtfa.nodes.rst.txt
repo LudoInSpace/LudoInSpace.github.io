@@ -1,7 +1,0 @@
-xtfa.nodes module
-=================
-
-.. automodule:: xtfa.nodes
-   :members:
-   :undoc-members:
-   :show-inheritance:

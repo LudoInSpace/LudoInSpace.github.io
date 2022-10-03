@@ -1,7 +1,0 @@
-Auto-configuration
-==================
-
-What is it?
------------
-
-The auto-configuration feature is ...

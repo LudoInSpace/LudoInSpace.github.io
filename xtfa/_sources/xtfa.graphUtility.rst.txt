@@ -1,7 +1,0 @@
-xtfa.graphUtility module
-========================
-
-.. automodule:: xtfa.graphUtility
-   :members:
-   :undoc-members:
-   :show-inheritance:

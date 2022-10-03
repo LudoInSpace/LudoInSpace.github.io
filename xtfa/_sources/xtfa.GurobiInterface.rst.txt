@@ -1,7 +1,0 @@
-xtfa.GurobiInterface module
-===========================
-
-.. automodule:: xtfa.GurobiInterface
-   :members:
-   :undoc-members:
-   :show-inheritance:

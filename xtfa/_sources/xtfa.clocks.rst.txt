@@ -1,7 +1,0 @@
-xtfa.clocks module
-==================
-
-.. automodule:: xtfa.clocks
-   :members:
-   :undoc-members:
-   :show-inheritance:

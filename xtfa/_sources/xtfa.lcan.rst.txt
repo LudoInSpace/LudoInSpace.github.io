@@ -1,7 +1,0 @@
-xtfa.lcan module
-================
-
-.. automodule:: xtfa.lcan
-   :members:
-   :undoc-members:
-   :show-inheritance:
