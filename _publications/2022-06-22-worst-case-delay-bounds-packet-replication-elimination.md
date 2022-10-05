@@ -13,4 +13,6 @@ Packet replication and elimination functions are used by time-sensitive networks
 
 [Supplementary Material](https://doi.org/10.1109/TNET.2022.3180763/mm1)
 
+Recommended citation: L. Thomas, A. Mifdaoui and J. -Y. L. Boudec, "Worst-Case Delay Bounds in Time-Sensitive Networks With Packet Replication and Elimination," in *IEEE/ACM Transactions on Networking*, 2022, doi: 10.1109/TNET.2022.3180763.
+
 [BibTeX](http://ludoinspace.github.io/files/2022-06-20-packet-replication-citation.bib)
