@@ -1,19 +1,14 @@
 ---
-permalink: /
-title: "Ludovic Thomas's PhD Defense"
-excerpt: "PhD Defense"
-author_profile: true
-redirect_from: 
-  - /about/
-  - /about.html
+title: "PhD Defense"
+collection: talks
+type: "Defense"
+permalink: /talk/2022-09-12-phd-defense
+date: 2022-09-12
+location: "ISAE-SUPAERO, Toulouse, France"
 ---
 
 ***Analysis of the side-effects on latency bounds of combinations of scheduling, redundancy and synchronization mechanisms in time-sensitive networks.***
 
-Date and Place
---------------
-
-September 12th, 2022 at 1:30pm at ISAE-SUPAERO, Toulouse, France
 
 Jury
 ----
@@ -33,10 +28,15 @@ Supervisors:
 - Mrs. Ahlem MIFDAOUI, Professor at ISAE-SUPAERO, Toulouse
 - Mr. Jean-Yves LE BOUDEC, Professor at EPFL, Lausanne
 
-Replay
-------
+Date and Place
+--------------
 
-[https://youtu.be/ij6ow5XTr4Q](https://youtu.be/ij6ow5XTr4Q)
+September 12th, 2022 at 1:30pm at ISAE-SUPAERO, Toulouse, France
+
+Video of the Presentation
+-------------------------
+
+[Video of the Presentation](https://youtu.be/ij6ow5XTr4Q)
 
 Slides
 ------
