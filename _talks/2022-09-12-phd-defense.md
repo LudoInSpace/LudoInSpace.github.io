@@ -2,6 +2,7 @@
 title: "PhD Defense"
 collection: talks
 type: "Defense"
+excerpt: "I defended my PhD on September 12th, 2022 at ISAE-SUPAERO, Toulouse, France"
 permalink: /talk/2022-09-12-phd-defense
 date: 2022-09-12
 location: "ISAE-SUPAERO, Toulouse, France"
