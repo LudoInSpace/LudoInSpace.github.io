@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Welcome to my personal website !
+Welcome to my personal website!
 
 I am a Postdoc at EPFL, in the laboratory of [Prof. Le Boudec](https://people.epfl.ch/jean-yves.leboudec), and I am currently working on the deterministic performance analysis of [time-sensitive networking (TSN)](https://1.ieee802.org/tsn/) using the [network-calculus framework](https://en.wikipedia.org/wiki/Network_calculus).
 
