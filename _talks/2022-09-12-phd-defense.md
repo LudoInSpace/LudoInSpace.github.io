@@ -10,6 +10,7 @@ location: "ISAE-SUPAERO, Toulouse, France"
 
 ***Analysis of the side-effects on latency bounds of combinations of scheduling, redundancy and synchronization mechanisms in time-sensitive networks.***
 
+[Final version of my manuscript](/files/2022-10-phd-dissertation.pdf)
 
 Jury
 ----
