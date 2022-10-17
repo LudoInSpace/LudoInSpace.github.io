@@ -16,7 +16,7 @@ I am currently looking for new opportunities within the network-calculus/TSN res
 
 A short summary of my education:
 
-* I received the Master's degree in aerospace engineering from [ISAE-SUPAERO](https://www.isae-supaero.fr/fr/) in 2018. 
+* I received the Master's degree in Aerospace Engineering from [ISAE-SUPAERO](https://www.isae-supaero.fr/fr/) in 2018. 
 My master's thesis was supervised by [Prof. Emmanuel Lochin](https://elochin.github.io/) and [Dr. Nicolas Kuhn](https://www.linkedin.com/in/nicolas-kuhn-65a026a5/). 
 You can find my dissertation [here](/files/2018-11-master-thesis-dissertation.pdf) (in French).
 
