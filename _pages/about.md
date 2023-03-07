@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Ludovic Thomas's Personal Website"
+title: "Ludovic Thomas' Personal Website"
 excerpt: ""
 author_profile: true
 redirect_from: 
