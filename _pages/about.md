@@ -24,6 +24,4 @@ My PhD was supervised by [Prof. Ahlem Mifdaoui](https://pagespro.isae-supaero.fr
 I performed half of my PhD as a visiting research assistant at EPFL.
 You can find my dissertation [here](/files/2022-10-phd-dissertation.pdf) (in English) and the replay of my defense [here](/talk/2022-09-12-phd-defense).
 
-Don't hesitate to contact me:
-
-![Contact](/images/contact.png)
+Don't hesitate to [contact me](/images/contact.png)!
