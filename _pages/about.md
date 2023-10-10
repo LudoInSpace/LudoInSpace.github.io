@@ -10,9 +10,8 @@ redirect_from:
 
 Welcome to my personal website!
 
-I am a Postdoc at EPFL, in the laboratory of [Prof. Le Boudec](https://people.epfl.ch/jean-yves.leboudec), and I am currently working on the deterministic performance analysis of [time-sensitive networking (TSN)](https://1.ieee802.org/tsn/) using the [network-calculus framework](https://en.wikipedia.org/wiki/Network_calculus).
-
-I am currently looking for new opportunities within the networking research community. My research interests include the performance analysis of computer networks using measurements, simulations, and deterministic approaches.
+I am a CNRS Researcher (Chargé de Recherche) at [LORIA](https://www.loria.fr/en/) (Nancy, France) in the [SIMBIOT](https://simbiot.gitlabpages.inria.fr/web/index.html) team.
+I am currently working on the deterministic performance analysis of [time-sensitive networking (TSN)](https://1.ieee802.org/tsn/) using the [network-calculus framework](https://en.wikipedia.org/wiki/Network_calculus).
 
 A short summary of my education:
 
@@ -25,4 +24,6 @@ My PhD was supervised by [Prof. Ahlem Mifdaoui](https://pagespro.isae-supaero.fr
 I performed half of my PhD as a visiting research assistant at EPFL.
 You can find my dissertation [here](/files/2022-10-phd-dissertation.pdf) (in English) and the replay of my defense [here](/talk/2022-09-12-phd-defense).
 
-Don't hesitate to [contact me](https://people.epfl.ch/ludovic.thomas)!
+Don't hesitate to contact me:
+
+![Contact](/images/contact.png)
